@@ -17,7 +17,7 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - run: mkdir test_results && echo "lorem ipsum" > test_results/output.xml
-      - aviator-upload-orb/upload
+      - aviator-upload-orb/upload:
           aviator_api_token: 'mq_live_2f46967cee184dbcb215e8523b68d72a'
           file_path: 'test_results/output.xml'
 workflows:
