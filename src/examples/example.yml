@@ -1,5 +1,6 @@
 description: >
-  Example for using our pytest-aviator plugin along with the orb. Add the `aviator-upload-orb/upload` command after
+  Example for using our pytest-aviator plugin along with the orb. 
+  Add the `aviator-upload-orb/upload` command after
   getting test results in order to upload them to the Aviator server.
 usage:
   version: 1.1
@@ -7,16 +8,18 @@ usage:
     aviator-upload-orb: aviator/aviator-upload-orb@1.2.3
   jobs:
     test:
+      docker:
+        - image: cimg/python:3.7
       steps:
         - checkout
         - run
-          name: Run tests and upload results
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            pip install pytest-aviator
-            python -m pytest -vv --junitxml="test_results/output.xml"
+            name: Run tests and upload results
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install -r requirements.txt
+              pip install pytest-aviator
+              python -m pytest -vv --junitxml="test_results/output.xml"
         - store_artifacts:
             path: ./test_results/output.xml
             destination: output.xml
