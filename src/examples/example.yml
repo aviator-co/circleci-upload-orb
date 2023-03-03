@@ -1,5 +1,5 @@
 description: >
-  Example for using our pytest-aviator plugin along with the orb. 
+  Example for using our pytest-aviator plugin along with the orb.
   Add the `aviator-upload-orb/upload` command after
   getting test results in order to upload them to the Aviator server.
 usage:
@@ -12,7 +12,7 @@ usage:
         - image: cimg/python:3.7
       steps:
         - checkout
-        - run
+        - run:
             name: Run tests and upload results
             command: |
               python3 -m venv venv
