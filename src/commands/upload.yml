@@ -13,4 +13,4 @@ steps:
         AVIATOR_API_TOKEN: <<parameters.aviator_api_token>>
         ASSETS: <<parameters.assets>>
       name: Upload junit xml files
-      command: <<include(scripts/upload.sh)>> || true # ensures that job does not fail if upload fails.
+      command: '<<include(scripts/upload.sh)>> || true'
