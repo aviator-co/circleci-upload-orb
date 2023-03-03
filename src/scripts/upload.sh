@@ -27,6 +27,6 @@ response=$(curl -X POST -H "x-Aviator-Api-Key: ${AVIATOR_API_TOKEN}" \
 	-H "Repo-Url: $REPO_URL" \
 	-H "Branch-Name: ${CIRCLE_BRANCH}" \
 	-F "file=@${ASSETS}" \
-	"$URL")
+	"$URL") || true
 
 echo "$response"
