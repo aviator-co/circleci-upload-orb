@@ -1,0 +1,16 @@
+description: >
+  This command uploads JUnit XML files in the form of a single xml file, zip file, or directory of files.
+parameters:
+  aviator_api_token:
+    type: string
+    description: "Aviator API Token."
+  file_path:
+    type: string
+    description: "Path to the file or files to upload."
+steps:
+  - run:
+      environment:
+        AVIATOR_API_TOKEN: <<parameters.aviator_api_token>>
+        FILE_PATH: <<parameters.file_path>>
+      name: Upload junit xml files
+      command: <<include(scripts/upload.sh)>>
