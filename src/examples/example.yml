@@ -1,13 +1,32 @@
 description: >
-  Sample example description.
-# Provide a use-case based example for using this orb.
-# Everything in the `usage` section will be displayed in the orb registry.
-# Comments are not retained.
+  Example for using our pytest-aviator plugin along with the orb.
+  Add the `aviator-upload-orb/upload` command after
+  getting test results in order to upload them to the Aviator server.
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    aviator-upload-orb: aviator/aviator-upload-orb@1.2.3
+  jobs:
+    test:
+      docker:
+        - image: cimg/python:3.7
+      steps:
+        - checkout
+        - run:
+            name: Run tests and upload results
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install -r requirements.txt
+              pip install pytest-aviator
+              python -m pytest -vv --junitxml="test_results/output.xml"
+        - store_artifacts:
+            path: ./test_results/output.xml
+            destination: output.xml
+        - aviator-upload-orb/upload:
+            aviator_api_token: "av_token_123"
+            assets: "test_results/output.xml"
   workflows:
-    use-my-orb:
+    test-and-upload:
       jobs:
-        - <orb-name>/<job-name>
+        - test
