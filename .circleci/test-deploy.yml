@@ -19,7 +19,7 @@ jobs:
       - run: mkdir test_results && echo "lorem ipsum" > test_results/output.xml
       - aviator-upload-orb/upload:
           aviator_api_token: 'av_live_xxx'
-          assets: 'test_results/output.xml'
+          assets: 'test_results/*.xml'
 workflows:
   test-deploy:
     jobs:
