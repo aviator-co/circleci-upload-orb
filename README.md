@@ -56,7 +56,7 @@ usage:
             destination: output.xml
         - aviator-upload-orb/upload:
             aviator_api_token: "av_token_123"
-            assets: "test_results/output.xml"
+            assets: "test_results/*.xml"
   workflows:
     test-and-upload:
       jobs:
