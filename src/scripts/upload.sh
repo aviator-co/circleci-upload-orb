@@ -11,9 +11,9 @@ if [ -z "${ASSETS}" ]; then
 fi
 
 if [[ -z "${UPLOAD_URL}" ]]; then
-    URL="${UPLOAD_URL}"
-else
     URL="https://upload.aviator.co/api/test-report-uploader"
+else
+    URL="${UPLOAD_URL}"
 fi
 
 if ! which curl > /dev/null; then
