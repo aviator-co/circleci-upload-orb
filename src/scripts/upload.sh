@@ -10,10 +10,10 @@ if [ -z "${ASSETS}" ]; then
     exit 1
 fi
 
-if [[ -z "${UPLOAD_URL}" ]]; then
+if [[ -z "${AVIATOR_UPLOAD_URL}" ]]; then
     URL="https://upload.aviator.co/api/test-report-uploader"
 else
-    URL="${UPLOAD_URL}"
+    URL="${AVIATOR_UPLOAD_URL}"
 fi
 
 if ! which curl > /dev/null; then
