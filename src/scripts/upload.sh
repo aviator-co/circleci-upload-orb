@@ -10,6 +10,12 @@ if [ -z "${ASSETS}" ]; then
     exit 1
 fi
 
+if [[ -z "${AVIATOR_UPLOAD_URL}" ]]; then
+    URL="https://upload.aviator.co/api/test-report-uploader"
+else
+    URL="${AVIATOR_UPLOAD_URL}"
+fi
+
 if ! which curl > /dev/null; then
     echo "curl is required to use this command"
     exit 1
@@ -21,7 +27,6 @@ for filename in ${ASSETS}; do
 done
 echo "${all_files[@]}"
 
-URL="https://upload.aviator.co/api/test-report-uploader"
 REPO_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
 
 response=$(curl -X POST -H "x-Aviator-Api-Key: ${AVIATOR_API_TOKEN}" \
