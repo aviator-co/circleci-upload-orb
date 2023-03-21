@@ -10,7 +10,7 @@ if [ -z "${ASSETS}" ]; then
     exit 1
 fi
 
-if [ -z "${UPLOAD_URL}" ]; then
+if [[ -z "${UPLOAD_URL}" ]]; then
     URL="${UPLOAD_URL}"
 else
     URL="https://upload.aviator.co/api/test-report-uploader"
