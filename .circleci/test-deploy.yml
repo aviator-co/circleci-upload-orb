@@ -18,7 +18,6 @@ jobs:
       # Run your orb's commands to validate them.
       - run: mkdir test_results && echo "lorem ipsum" > test_results/output.xml
       - aviator-upload-orb/upload:
-          aviator_api_token: 'av_live_xxx'
           assets: 'test_results/*.xml'
 workflows:
   test-deploy:
