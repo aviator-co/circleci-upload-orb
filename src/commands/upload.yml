@@ -1,16 +1,12 @@
 description: >
   This command uploads one or more JUnit XML files represented as assets.
 parameters:
-  aviator_api_token:
-    type: string
-    description: "Aviator API Token associated with your account."
   assets:
     type: string
     description: "Path to the file or files to upload."
 steps:
   - run:
       environment:
-        AVIATOR_API_TOKEN: <<parameters.aviator_api_token>>
         ASSETS: <<parameters.assets>>
       name: Upload junit xml files
       when: always
