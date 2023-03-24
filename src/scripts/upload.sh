@@ -37,6 +37,7 @@ response=$(curl -X POST -H "x-Aviator-Api-Key: ${AVIATOR_API_TOKEN}" \
 	-H "Commit-Sha: ${CIRCLE_SHA1}" \
 	-H "Repo-Url: $REPO_URL" \
 	-H "Branch-Name: ${CIRCLE_BRANCH}" \
+	-H "Build-Status: ${JOB_STATUS}"
 	"${all_files[@]}" \
 	"$URL") || true
 
