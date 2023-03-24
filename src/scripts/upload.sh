@@ -26,6 +26,7 @@ for filename in ${ASSETS}; do
   all_files+=(-F "file[]=@$filename")
 done
 echo "${all_files[@]}"
+echo "Job Status: ${JOB_STATUS}"
 
 REPO_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
 
@@ -37,6 +38,7 @@ response=$(curl -X POST -H "x-Aviator-Api-Key: ${AVIATOR_API_TOKEN}" \
 	-H "Commit-Sha: ${CIRCLE_SHA1}" \
 	-H "Repo-Url: $REPO_URL" \
 	-H "Branch-Name: ${CIRCLE_BRANCH}" \
+	-H "Build-Status: ${JOB_STATUS}" \
 	"${all_files[@]}" \
 	"$URL") || true
 
