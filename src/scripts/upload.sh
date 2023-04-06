@@ -10,6 +10,36 @@ if [ -z "${ASSETS}" ]; then
     exit 1
 fi
 
+# Check if a file exists.
+if [[ "${ASSETS}" == *"*"* ]]; then
+    # ASSETS contains a wildcard
+    find_path="$(dirname "${ASSETS}")"
+    file_pattern="$(basename "${ASSETS}")"
+
+    # Use a loop to iterate over all the matching files
+    found=false
+    for f in ${find_path}/${file_pattern}; do
+        if [ -e "${f}" ]; then
+            found=true
+            echo "File exists: ${f}"
+            break
+        fi
+    done
+
+    if ! ${found}; then
+      echo "No files exist in ${ASSETS}"
+      exit 1
+    fi
+else
+    # ASSETS does not contain a wildcard
+    if [ -e "${ASSETS}" ]; then
+        echo "File exists: ${ASSETS}"
+    else
+        echo "File does not exist: ${ASSETS}"
+        exit 1
+    fi
+fi
+
 if [[ -z "${AVIATOR_UPLOAD_URL}" ]]; then
     URL="https://upload.aviator.co/api/test-report-uploader"
 else
