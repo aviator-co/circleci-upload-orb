@@ -38,11 +38,6 @@ if ! which curl > /dev/null; then
     exit 1
 fi
 
-all_files=()
-for filename in ${ASSETS}; do
-  all_files+=(-F "file[]=@$filename")
-done
-echo "${all_files[@]}"
 echo "Job Status: ${JOB_STATUS}"
 
 REPO_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
