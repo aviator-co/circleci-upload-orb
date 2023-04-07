@@ -10,6 +10,23 @@ if [ -z "${ASSETS}" ]; then
     exit 1
 fi
 
+echo "Assets: $ASSETS"
+all_files=()
+
+for filename in ${ASSETS}; do
+    if [ -f "$filename" ]; then
+        all_files+=(-F "file[]=@$filename")
+    fi
+done
+
+if [ "${#all_files[@]}" -eq 0 ]; then
+    echo "No files found."
+    exit 1
+else
+    echo "Files found: "
+    echo "${all_files[@]}"
+fi
+
 if [[ -z "${AVIATOR_UPLOAD_URL}" ]]; then
     URL="https://upload.aviator.co/api/test-report-uploader"
 else
@@ -21,11 +38,6 @@ if ! which curl > /dev/null; then
     exit 1
 fi
 
-all_files=()
-for filename in ${ASSETS}; do
-  all_files+=(-F "file[]=@$filename")
-done
-echo "${all_files[@]}"
 echo "Job Status: ${JOB_STATUS}"
 
 REPO_URL="https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
