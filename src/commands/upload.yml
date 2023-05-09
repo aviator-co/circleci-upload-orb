@@ -5,8 +5,8 @@ parameters:
     type: string
     description: "Path to the file or files to upload."
   assets_required:
-    type: boolean
-    default: true
+    type: string
+    default: "true"
     description: "Whether assets should be required. If true, the action will fail if no test files are found."
 steps:
   - run:
