@@ -4,11 +4,16 @@ parameters:
   assets:
     type: string
     description: "Path to the file or files to upload."
+  assets_required:
+    type: boolean
+    default: true
+    description: "Whether assets should be required. If true, the action will fail if no test files are found."
 steps:
   - run:
       environment:
         ASSETS: <<parameters.assets>>
         JOB_STATUS: success
+        ASSETS_REQUIRED: <<parameters.assets_required>>
       name: Upload junit xml files
       when: on_success
       command: <<include(scripts/upload.sh)>>
@@ -16,6 +21,7 @@ steps:
       environment:
         ASSETS: <<parameters.assets>>
         JOB_STATUS: failure
+        ASSETS_REQUIRED: <<parameters.assets_required>>
       name: Upload junit xml files
       when: on_fail
       command: <<include(scripts/upload.sh)>>
