@@ -20,7 +20,7 @@ for filename in ${ASSETS}; do
 done
 
 if [ "${#all_files[@]}" -eq 0 ]; then
-     if [ "${ASSETS_REQUIRED}" = "true" ]; then
+     if [ "${ASSETS_REQUIRED}" = true ]; then
         echo "No asset files found to upload."
         exit 1
     else
