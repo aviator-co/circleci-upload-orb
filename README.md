@@ -49,6 +49,9 @@ usage:
             destination: output.xml
         - aviator-upload-orb/upload:
             assets: "test_results/*.xml"
+            # NOTE: This is optional (the default value is true).
+            # If true, the action will fail if no assets are found.
+            assets_required: false
   workflows:
     test-and-upload:
       jobs:
